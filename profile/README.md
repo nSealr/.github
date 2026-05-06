@@ -11,6 +11,7 @@ blueprints, smartcard support, and test vectors are all developed in the open.
 
 - `.github`: organization profile, issue templates, and shared GitHub metadata.
 - `lab`: knowledge base, roadmap, audits, sources, threat models, and decisions.
+- `website`: public website, documentation hub, and publishing plan.
 - `specs`: shared protocols, schemas, and NIP-01/BIP-340 test vectors.
 - `companion`: host-side CLI, browser bridge, NIP-46, QR, USB, serial, and smartcard adapters.
 - `esp32`: ESP32-S3 and classic ESP32 firmware targets.
