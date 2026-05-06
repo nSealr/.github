@@ -1,0 +1,35 @@
+name: Feature request
+description: Propose a scoped feature.
+title: "feat: "
+labels: ["type:feature", "status:ready"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What concrete problem should this feature solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the intended behavior and acceptance criteria.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - specs
+        - companion
+        - vault
+        - esp32
+        - smartcard
+        - hardware
+        - website
+        - lab
+    validations:
+      required: true
+

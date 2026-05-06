@@ -1,0 +1,40 @@
+labels:
+  - name: area:specs
+    color: "0e8a16"
+  - name: area:companion
+    color: "0e8a16"
+  - name: area:vault
+    color: "0e8a16"
+  - name: area:esp32
+    color: "0e8a16"
+  - name: area:smartcard
+    color: "0e8a16"
+  - name: area:hardware
+    color: "0e8a16"
+  - name: area:website
+    color: "0e8a16"
+  - name: area:lab
+    color: "0e8a16"
+  - name: type:bug
+    color: "d73a4a"
+  - name: type:feature
+    color: "a2eeef"
+  - name: type:research
+    color: "d4c5f9"
+  - name: type:security
+    color: "b60205"
+  - name: type:docs
+    color: "0075ca"
+  - name: status:blocked
+    color: "5319e7"
+  - name: status:needs-source
+    color: "fbca04"
+  - name: status:ready
+    color: "0e8a16"
+  - name: priority:p0
+    color: "b60205"
+  - name: priority:p1
+    color: "d93f0b"
+  - name: priority:p2
+    color: "fbca04"
+

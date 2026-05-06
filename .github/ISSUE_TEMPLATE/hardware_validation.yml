@@ -1,0 +1,27 @@
+name: Hardware validation
+description: Record a reproducible hardware test.
+title: "hardware: "
+labels: ["type:research", "area:hardware"]
+body:
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware
+      description: Board, revision, modules, and relevant peripherals.
+    validations:
+      required: true
+  - type: textarea
+    id: procedure
+    attributes:
+      label: Procedure
+      description: Exact test procedure and firmware/software versions.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Result
+      description: Logs, pass/fail result, and limitations.
+    validations:
+      required: true
+

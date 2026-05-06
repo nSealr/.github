@@ -1,0 +1,27 @@
+name: Research task
+description: Track source-backed research before implementation.
+title: "research: "
+labels: ["type:research", "status:needs-source"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research Question
+      description: State the exact question to answer.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Candidate Sources
+      description: List canonical specs, repositories, datasheets, issues, releases, or commits.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Expected Output
+      description: Describe the decision, page, test, or report this task should produce.
+    validations:
+      required: true
+

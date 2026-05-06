@@ -1,0 +1,33 @@
+name: Bug report
+description: Report incorrect behavior with reproducible evidence.
+title: "bug: "
+labels: ["type:bug", "status:needs-source"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the observed incorrect behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction Steps
+      description: Provide exact commands, inputs, hardware, or fixture names.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Include logs, screenshots, serial output, APDU traces, or test output.
+    validations:
+      required: true
+

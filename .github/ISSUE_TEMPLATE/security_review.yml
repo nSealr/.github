@@ -1,0 +1,27 @@
+name: Security review
+description: Review a security-sensitive behavior, design, or change.
+title: "security: "
+labels: ["type:security", "status:needs-source"]
+body:
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What component, protocol, firmware path, or hardware behavior is under review?
+    validations:
+      required: true
+  - type: textarea
+    id: threat
+    attributes:
+      label: Threat Model
+      description: Attackers, assets, assumptions, and trust boundaries.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Tests, traces, source references, or reproduction steps.
+    validations:
+      required: true
+

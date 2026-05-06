@@ -26,3 +26,5 @@ blueprints, smartcard support, and test vectors are all developed in the open.
 - The host companion is not trusted with key custody.
 - Protocols and test vectors should be reusable by other Nostr projects.
 - Hardware should be buildable from documented parts and open design files.
+- Durable project artifacts are written in English.
+- Completion requires tests, documentation, audit, and fresh verification.
