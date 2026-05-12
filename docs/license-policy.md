@@ -1,6 +1,6 @@
 # License Policy
 
-NostrSeal uses maximum practical permissiveness.
+nSealr uses maximum practical permissiveness.
 
 ## Defaults
 

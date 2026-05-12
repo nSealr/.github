@@ -1,6 +1,6 @@
 # Code of Conduct
 
-NostrSeal contributors are expected to keep collaboration professional,
+nSealr contributors are expected to keep collaboration professional,
 technical, and respectful.
 
 ## Expected Behavior

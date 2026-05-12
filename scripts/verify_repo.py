@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the NostrSeal organization metadata repository."""
+"""Verify the nSealr organization metadata repository."""
 
 from __future__ import annotations
 
@@ -53,7 +53,7 @@ def main() -> int:
             print(f"ERROR: {error}")
         return 1
 
-    print("NostrSeal organization metadata verification passed")
+    print("nSealr organization metadata verification passed")
     return 0
 
 

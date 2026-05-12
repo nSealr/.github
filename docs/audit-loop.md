@@ -1,6 +1,6 @@
 # Audit Loop
 
-Every meaningful NostrSeal task must pass an audit loop before it is called
+Every meaningful nSealr task must pass an audit loop before it is called
 complete.
 
 ## Required Loop

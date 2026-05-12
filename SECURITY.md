@@ -1,6 +1,6 @@
 # Security Policy
 
-NostrSeal is experimental until a release explicitly says otherwise. Do not use
+nSealr is experimental until a release explicitly says otherwise. Do not use
 unreleased prototypes to protect production Nostr identities.
 
 ## Reporting Security Issues
@@ -36,5 +36,5 @@ Security-sensitive areas include:
 
 No security claim is accepted without evidence. Fixes must include tests,
 documentation updates, and an audit note in the relevant repository or in
-`NostrSeal/lab`.
+`nSealr/lab`.
 

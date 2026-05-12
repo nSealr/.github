@@ -1,12 +1,12 @@
 # Contributing
 
-NostrSeal values careful, source-backed work over speed. All durable project
+nSealr values careful, source-backed work over speed. All durable project
 artifacts must be written in English.
 
 ## Workflow
 
 1. Read the relevant repository README and docs.
-2. Check `NostrSeal/lab` for current roadmap, threat model, and decisions.
+2. Check `nSealr/lab` for current roadmap, threat model, and decisions.
 3. Write or update tests before implementation where behavior changes.
 4. Keep commits focused and reviewable.
 5. Run the repository verification command before claiming completion.

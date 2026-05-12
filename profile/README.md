@@ -1,6 +1,6 @@
-# NostrSeal
+# nSealr
 
-NostrSeal is a non-profit open-source hardware and software project for Nostr
+nSealr is a non-profit open-source hardware and software project for Nostr
 signing devices.
 
 The goal is to make Nostr key custody and signing reproducible, inspectable, and

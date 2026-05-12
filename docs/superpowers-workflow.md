@@ -1,7 +1,7 @@
 # Superpowers Workflow
 
 Superpowers is a development workflow for agents. It is not a runtime dependency
-of NostrSeal.
+of nSealr.
 
 ## Required Use
 
