@@ -3,7 +3,7 @@ labels:
     color: "0e8a16"
   - name: area:companion
     color: "0e8a16"
-  - name: area:vault
+  - name: area:raspberry
     color: "0e8a16"
   - name: area:esp32
     color: "0e8a16"
@@ -37,4 +37,3 @@ labels:
     color: "d93f0b"
   - name: priority:p2
     color: "fbca04"
-

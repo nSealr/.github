@@ -24,7 +24,7 @@ body:
       options:
         - specs
         - companion
-        - vault
+        - raspberry
         - esp32
         - smartcard
         - hardware
@@ -32,4 +32,3 @@ body:
         - lab
     validations:
       required: true
-

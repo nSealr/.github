@@ -15,7 +15,7 @@ blueprints, smartcard support, and test vectors are all developed in the open.
 - `specs`: shared protocols, schemas, and NIP-01/BIP-340 test vectors.
 - `companion`: host-side CLI, browser bridge, NIP-46, QR, USB, serial, and smartcard adapters.
 - `esp32`: ESP32-S3 and classic ESP32 firmware targets.
-- `vault`: Pi Zero / SeedSigner-style QR vault.
+- `raspberry`: Raspberry/Pi stateless QR vault and SeedSigner-style flow.
 - `smartcard`: JavaCard/NFC/contact smartcard signer work.
 - `hardware`: open PCB, BOM, enclosures, wiring, and assembly references.
 
