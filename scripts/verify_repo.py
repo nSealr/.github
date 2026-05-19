@@ -28,6 +28,7 @@ REQUIRED_FILES = [
     ".github/ISSUE_TEMPLATE/hardware_validation.yml",
     ".github/ISSUE_TEMPLATE/security_review.yml",
     ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/pull_request_template.md",
 ]
 
 CANONICAL_FEATURE_AREAS = {
