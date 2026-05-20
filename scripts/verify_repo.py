@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import subprocess
 import sys
 import yaml
 
@@ -56,6 +57,34 @@ CANONICAL_REPOSITORIES = {
     "hardware",
 }
 
+FORBIDDEN_CURRENT_TERMS = {
+    "Nostr" + "Seal",
+    "nostr" + "seal",
+    "nsealr" + "/vault",
+    "nostr" + "seal/vault",
+}
+
+REQUIRED_PR_AUDIT_STRINGS = {
+    "five-signer-family taxonomy",
+    "companion/browser/SDK path stays secretless",
+    "QR vault behavior remains stateless",
+    "ESP32 production signing remains disabled",
+    "Smartcard review remains display-less",
+    "TROPIC01 direct BIP-340/Schnorr support is not claimed",
+    "No stale, legacy, or duplicate implementation path",
+}
+
+
+def tracked_text_files() -> list[Path]:
+    result = subprocess.run(
+        ["git", "ls-files"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return [ROOT / rel for rel in sorted(result.stdout.splitlines())]
+
 
 def main() -> int:
     errors: list[str] = []
@@ -67,25 +96,39 @@ def main() -> int:
             errors.append(f"empty required file: {rel}")
 
     labels_path = ROOT / ".github" / "labels.yml"
+    label_names: set[str] = set()
     if labels_path.exists():
         parsed = yaml.safe_load(labels_path.read_text(encoding="utf-8"))
         names = [entry.get("name") for entry in parsed.get("labels", [])]
+        label_names = {name for name in names if isinstance(name, str)}
         for required in ("area:specs", "area:raspberry", "type:security", "priority:p0"):
-            if required not in names:
+            if required not in label_names:
                 errors.append(f"missing required label: {required}")
         for label in sorted(CANONICAL_AREA_LABELS):
-            if label not in names:
+            if label not in label_names:
                 errors.append(f"missing canonical area label: {label}")
         area_labels = {
             name.removeprefix("area:")
-            for name in names
-            if isinstance(name, str) and name.startswith("area:")
+            for name in label_names
+            if name.startswith("area:")
         }
         if area_labels != CANONICAL_FEATURE_AREAS:
             errors.append(
                 "area labels must match canonical repositories: "
                 + ", ".join(sorted(CANONICAL_FEATURE_AREAS))
             )
+
+    template_dir = ROOT / ".github" / "ISSUE_TEMPLATE"
+    if label_names and template_dir.exists():
+        for template_path in sorted(template_dir.glob("*.yml")):
+            if template_path.name == "config.yml":
+                continue
+            parsed = yaml.safe_load(template_path.read_text(encoding="utf-8"))
+            for label in parsed.get("labels", []):
+                if label not in label_names:
+                    errors.append(
+                        f"{template_path.relative_to(ROOT)} references unknown label: {label}"
+                    )
 
     feature_template = ROOT / ".github" / "ISSUE_TEMPLATE" / "feature_request.yml"
     if feature_template.exists():
@@ -112,6 +155,22 @@ def main() -> int:
                 "profile repository list must match canonical repositories: "
                 + ", ".join(sorted(CANONICAL_REPOSITORIES))
             )
+
+    pr_template = ROOT / ".github" / "pull_request_template.md"
+    if pr_template.exists():
+        pr_text = pr_template.read_text(encoding="utf-8")
+        for required in sorted(REQUIRED_PR_AUDIT_STRINGS):
+            if required not in pr_text:
+                errors.append(f"pull request template missing audit gate: {required}")
+
+    for path in tracked_text_files():
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        for term in sorted(FORBIDDEN_CURRENT_TERMS):
+            if term in text:
+                errors.append(f"{path.relative_to(ROOT)} contains stale term: {term}")
 
     if errors:
         for error in errors:

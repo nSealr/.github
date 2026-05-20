@@ -29,8 +29,9 @@ Completion requires fresh evidence:
 - docs match the implemented behavior;
 - security implications are reviewed;
 - dependency and license changes are understood;
+- organization metadata still passes label, issue-template, pull-request gate,
+  repository-list, and stale-term validation where applicable;
 - `git status` is clean after commit;
 - the result is pushed when a milestone closes.
 
 If any item fails, the task remains open.
-

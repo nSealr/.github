@@ -14,6 +14,10 @@ Run the organization metadata verification loop with:
 make ci
 ```
 
+The verifier checks required organization files, canonical repository/area
+lists, issue-template labels, pull-request audit gates, and stale pre-rebrand
+terms in current metadata.
+
 ## License
 
 Organization metadata and helper scripts are released under the MIT License.
