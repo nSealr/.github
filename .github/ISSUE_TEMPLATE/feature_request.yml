@@ -25,7 +25,7 @@ body:
         - specs
         - companion
         - raspberry
-        - esp32
+        - firmware
         - smartcard
         - hardware
         - website
