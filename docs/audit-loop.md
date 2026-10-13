@@ -1,3 +1,5 @@
+> Historical workflow reference. Current restart scope and execution rules are in [nsealr](https://github.com/nSealr/nsealr/tree/main/docs/restart) and its AGENTS.md.
+
 # Audit Loop
 
 Every meaningful nSealr task must pass an audit loop before it is called

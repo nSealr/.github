@@ -14,9 +14,9 @@ Run the organization metadata verification loop with:
 make ci
 ```
 
-The verifier checks required organization files, canonical repository/area
-lists, issue-template labels, pull-request audit gates, and stale pre-rebrand
-terms in current metadata.
+The verifier checks required organization files, unique labels, issue-template label references, and agreement between feature-area options and declared area labels. Prose and product claims require review and source evidence; matching a phrase is not a security gate.
+
+The [restart plan](https://github.com/nSealr/nsealr/tree/main/docs/restart) governs current scope. Earlier audit-loop and workflow documents are historical until migrated.
 
 ## License
 

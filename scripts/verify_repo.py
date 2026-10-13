@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-import subprocess
 import sys
 import yaml
 
@@ -32,60 +31,6 @@ REQUIRED_FILES = [
     ".github/pull_request_template.md",
 ]
 
-CANONICAL_FEATURE_AREAS = {
-    "specs",
-    "companion",
-    "raspberry",
-    "firmware",
-    "smartcard",
-    "hardware",
-    "website",
-    "lab",
-}
-
-CANONICAL_AREA_LABELS = {f"area:{area}" for area in CANONICAL_FEATURE_AREAS}
-
-CANONICAL_REPOSITORIES = {
-    ".github",
-    "lab",
-    "website",
-    "specs",
-    "companion",
-    "firmware",
-    "raspberry",
-    "smartcard",
-    "hardware",
-}
-
-FORBIDDEN_CURRENT_TERMS = {
-    "Nostr" + "Seal",
-    "nostr" + "seal",
-    "nsealr" + "/vault",
-    "nostr" + "seal/vault",
-}
-
-REQUIRED_PR_AUDIT_STRINGS = {
-    "five-signer-family taxonomy",
-    "companion/browser/SDK path stays secretless",
-    "QR vault behavior remains stateless",
-    "ESP32 production signing remains disabled",
-    "Smartcard review remains display-less",
-    "TROPIC01 direct BIP-340/Schnorr support is not claimed",
-    "No stale, legacy, or duplicate implementation path",
-}
-
-
-def tracked_text_files() -> list[Path]:
-    result = subprocess.run(
-        ["git", "ls-files"],
-        cwd=ROOT,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    return [ROOT / rel for rel in sorted(result.stdout.splitlines())]
-
-
 def main() -> int:
     errors: list[str] = []
     for rel in REQUIRED_FILES:
@@ -97,26 +42,23 @@ def main() -> int:
 
     labels_path = ROOT / ".github" / "labels.yml"
     label_names: set[str] = set()
+    area_labels: set[str] = set()
     if labels_path.exists():
         parsed = yaml.safe_load(labels_path.read_text(encoding="utf-8"))
         names = [entry.get("name") for entry in parsed.get("labels", [])]
         label_names = {name for name in names if isinstance(name, str)}
-        for required in ("area:specs", "area:raspberry", "type:security", "priority:p0"):
+        if len(names) != len(label_names):
+            errors.append("duplicate label names")
+        for required in ("type:security", "priority:p0"):
             if required not in label_names:
                 errors.append(f"missing required label: {required}")
-        for label in sorted(CANONICAL_AREA_LABELS):
-            if label not in label_names:
-                errors.append(f"missing canonical area label: {label}")
         area_labels = {
             name.removeprefix("area:")
             for name in label_names
             if name.startswith("area:")
         }
-        if area_labels != CANONICAL_FEATURE_AREAS:
-            errors.append(
-                "area labels must match canonical repositories: "
-                + ", ".join(sorted(CANONICAL_FEATURE_AREAS))
-            )
+        if not area_labels:
+            errors.append("at least one area label is required")
 
     template_dir = ROOT / ".github" / "ISSUE_TEMPLATE"
     if label_names and template_dir.exists():
@@ -137,40 +79,11 @@ def main() -> int:
         for item in parsed.get("body", []):
             if item.get("id") == "area":
                 areas = set(item.get("attributes", {}).get("options", []))
-        if areas != CANONICAL_FEATURE_AREAS:
+        if areas != area_labels:
             errors.append(
-                "feature request area options must match canonical repositories: "
-                + ", ".join(sorted(CANONICAL_FEATURE_AREAS))
+                "feature request area options must match declared area labels: "
+                + ", ".join(sorted(area_labels))
             )
-
-    profile_path = ROOT / "profile" / "README.md"
-    if profile_path.exists():
-        profile_repos = set()
-        for line in profile_path.read_text(encoding="utf-8").splitlines():
-            stripped = line.strip()
-            if stripped.startswith("- `"):
-                profile_repos.add(stripped.split("`", 2)[1])
-        if profile_repos != CANONICAL_REPOSITORIES:
-            errors.append(
-                "profile repository list must match canonical repositories: "
-                + ", ".join(sorted(CANONICAL_REPOSITORIES))
-            )
-
-    pr_template = ROOT / ".github" / "pull_request_template.md"
-    if pr_template.exists():
-        pr_text = pr_template.read_text(encoding="utf-8")
-        for required in sorted(REQUIRED_PR_AUDIT_STRINGS):
-            if required not in pr_text:
-                errors.append(f"pull request template missing audit gate: {required}")
-
-    for path in tracked_text_files():
-        try:
-            text = path.read_text(encoding="utf-8")
-        except UnicodeDecodeError:
-            continue
-        for term in sorted(FORBIDDEN_CURRENT_TERMS):
-            if term in text:
-                errors.append(f"{path.relative_to(ROOT)} contains stale term: {term}")
 
     if errors:
         for error in errors:

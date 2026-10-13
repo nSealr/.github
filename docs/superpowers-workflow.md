@@ -1,3 +1,5 @@
+> Historical workflow reference. Current restart scope and execution rules are in [nsealr](https://github.com/nSealr/nsealr/tree/main/docs/restart) and its AGENTS.md.
+
 # Superpowers Workflow
 
 Superpowers is a development workflow for agents. It is not a runtime dependency

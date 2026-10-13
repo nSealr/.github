@@ -1,23 +1,15 @@
-# Summary
+# Change
 
-Describe the change and the repository scope.
+Describe the problem, resulting behavior and affected profile or interface.
 
-# Verification
+# Evidence
 
-- [ ] I ran the relevant repository `make ci`.
-- [ ] I ran `lab make integration` for shared contracts, vectors, or cross-repo behavior.
-- [ ] I checked GitHub Actions logs after push when this closes a milestone.
+List exact checks, candidate commits/artifacts and relevant results. Identify skipped or physical checks and inherited failures. Link the task and independent review.
 
-# Audit
+# Security and compatibility
 
-- [ ] The change matches the five-signer-family taxonomy.
-- [ ] The companion/browser/SDK path stays secretless for production use.
-- [ ] QR vault behavior remains stateless, RAM-only, air-gapped, and manual.
-- [ ] ESP32 production signing remains disabled unless every readiness gate is complete.
-- [ ] Smartcard review remains display-less with explicit external review acknowledgement.
-- [ ] TROPIC01 direct BIP-340/Schnorr support is not claimed unless source-backed.
-- [ ] No stale, legacy, or duplicate implementation path was kept without a current reason.
+Explain changes to key custody, identity, device approval, update/recovery or interface contracts when affected. State exact hardware/protocol support and remaining limitations. A simulation, profile boolean or prose assertion does not establish a security property.
 
-# Notes
+# Follow-up
 
-Add blockers, hardware evidence gaps, or follow-up links here.
+List unresolved findings with owner and next action; do not declare the affected gate complete.

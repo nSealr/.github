@@ -22,13 +22,13 @@ body:
     attributes:
       label: Area
       options:
-        - specs
-        - companion
-        - raspberry
-        - firmware
-        - smartcard
+        - signer
+        - bridge
+        - protocols
+        - devices
         - hardware
+        - board-sdk
         - website
-        - lab
+        - project
     validations:
       required: true

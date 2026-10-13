@@ -1,19 +1,19 @@
 labels:
-  - name: area:specs
+  - name: area:signer
     color: "0e8a16"
-  - name: area:companion
+  - name: area:bridge
     color: "0e8a16"
-  - name: area:raspberry
+  - name: area:protocols
     color: "0e8a16"
-  - name: area:firmware
-    color: "0e8a16"
-  - name: area:smartcard
+  - name: area:devices
     color: "0e8a16"
   - name: area:hardware
     color: "0e8a16"
+  - name: area:board-sdk
+    color: "0e8a16"
   - name: area:website
     color: "0e8a16"
-  - name: area:lab
+  - name: area:project
     color: "0e8a16"
   - name: type:bug
     color: "d73a4a"

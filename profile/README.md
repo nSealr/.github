@@ -1,30 +1,23 @@
 # nSealr
 
-nSealr is a non-profit open-source hardware and software project for Nostr
-signing devices.
+Open-source Nostr signing tools and a programmable security-board platform.
 
-The goal is to make Nostr key custody and signing reproducible, inspectable, and
-composable by anyone: firmware, companion software, protocols, hardware
-blueprints, smartcard support, and test vectors are all developed in the open.
+**Restart and engineering validation are in progress. No production-ready device release is claimed.**
 
-## Repositories
+The retained paths are an accessible ESP32 signer without a secure element, offline Raspberry Pi and ESP32-P4 kits, and a custom board. Shared Nostr behavior belongs to nSealr Signer; nSealr Bridge connects clients. Every physical implementation has its own security and release gates.
 
-- `.github`: organization profile, issue templates, and shared GitHub metadata.
-- `lab`: knowledge base, roadmap, audits, sources, threat models, and decisions.
-- `website`: public website, documentation hub, and publishing plan.
-- `specs`: shared protocols, schemas, and NIP-01/BIP-340 test vectors.
-- `companion`: host-side CLI, browser bridge, NIP-46, QR, USB, serial, and smartcard adapters.
-- `firmware`: Rust cargo-workspace firmware monorepo (`nsealr-core` crate + device apps).
-- `raspberry`: Raspberry/Pi stateless QR vault and SeedSigner-style flow.
-- `smartcard`: JavaCard/NFC/contact smartcard signer work.
-- `hardware`: open PCB, BOM, enclosures, wiring, and assembly references.
+## Active destinations
+
+- [nsealr](https://github.com/nSealr/nsealr): main software, Signer/Bridge architecture, restart plan and tests. Renamed from `firmware`, preserving its history.
+- [hardware](https://github.com/nSealr/hardware): general-purpose programmable security board, component review, KiCad, mechanics and manufacturing validation.
+- [board-sdk](https://github.com/nSealr/board-sdk): generic firmware-development foundation, independent of Nostr; under development.
+- [website](https://github.com/nSealr/website): public documentation, being aligned with the restart.
+- [.github](https://github.com/nSealr/.github): organization and contribution metadata.
+
+## Migration sources
+
+`companion`, `raspberry` and `specs` remain available until selected code, vectors and ownership have migrated and passed verification. Smartcard research is retired. Historical documents may describe the previous scope; use the [restart plan](https://github.com/nSealr/nsealr/tree/main/docs/restart) for current decisions.
 
 ## Principles
 
-- Private keys must not be exposed to ordinary Nostr clients.
-- Sensitive signatures require explicit user review and approval.
-- The host companion is not trusted with key custody.
-- Protocols and test vectors should be reusable by other Nostr projects.
-- Hardware should be buildable from documented parts and open design files.
-- Durable project artifacts are written in English.
-- Completion requires tests, documentation, audit, and fresh verification.
+Private keys stay out of ordinary clients. Device approval binds the exact operation. Documentation follows source, specifications and measurements. Hardware support is demonstrated on identified assemblies. The Board platform can host independent firmware, but does not promise every application or algorithm merely by exposing a secure element.
