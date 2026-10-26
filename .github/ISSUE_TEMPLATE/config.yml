@@ -1,6 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Private security report
-    url: https://github.com/nSealr/.github/security/advisories
-    about: Report sensitive vulnerabilities privately when advisories are enabled.
-
+    url: https://github.com/nSealr/nsealr/security/advisories/new
+    about: Report sensitive vulnerabilities privately to the nSealr maintainers.
