@@ -1,23 +1,40 @@
 # nSealr
 
-Open-source Nostr signing tools and a programmable security-board platform.
+Open-source Nostr signing devices and the software needed to use them.
 
-**Restart and engineering validation are in progress. No production-ready device release is claimed.**
+**Pre-release development. No production-ready device or real-key custody
+qualification is claimed.**
 
-The retained paths are an accessible ESP32 signer without a secure element, offline Raspberry Pi and ESP32-P4 kits, and a custom board. Shared Nostr behavior belongs to nSealr Signer; nSealr Bridge connects clients. Every physical implementation has its own security and release gates.
+The first milestone has three independent device paths: a connected ESP32-S3
+with display and physical confirmation, without a secure element or persistent
+identity vault; and Raspberry Pi and ESP32-P4 offline signers with session
+custody. The shared Rust engine owns signing semantics. Bridge, CLI, service,
+browser/client integration and the TypeScript SDK belong to the same usable
+workflow; the host cannot grant device approval.
 
-## Active destinations
+Public-fixture round trips are development evidence. Installation, recovery,
+entropy, interface lifecycle and each profile's security gates remain explicit.
+Connected/offline describe interaction modes, not a security ranking.
 
-- [nsealr](https://github.com/nSealr/nsealr): main software, Signer/Bridge architecture, restart plan and tests. Renamed from `firmware`, preserving its history.
-- [hardware](https://github.com/nSealr/hardware): general-purpose programmable security board, component review, KiCad, mechanics and manufacturing validation.
-- [board-sdk](https://github.com/nSealr/board-sdk): generic firmware-development foundation, independent of Nostr; under development.
-- [website](https://github.com/nSealr/website): public documentation, being aligned with the restart.
-- [.github](https://github.com/nSealr/.github): organization and contribution metadata.
+## Current destinations
 
-## Migration sources
+- [nsealr](https://github.com/nSealr/nsealr): device apps, shared core,
+  Bridge/host packages, contracts, requirements and the sole task graph.
+  Renamed from firmware, preserving its history.
+- [website](https://github.com/nSealr/website): public site and documentation.
+- [.github](https://github.com/nSealr/.github): shared contribution and security guidance.
+- [hardware](https://github.com/nSealr/hardware): future programmable board design.
+- [board-sdk](https://github.com/nSealr/board-sdk): future embedded board platform,
+  independent of Nostr and distinct from the product's TypeScript SDK.
 
-`companion`, `raspberry` and `specs` remain available until selected code, vectors and ownership have migrated and passed verification. Smartcard research is retired. Historical documents may describe the previous scope; use the [restart plan](https://github.com/nSealr/nsealr/tree/main/docs/restart) for current decisions.
+Custom hardware and its embedded SDK are preserved future work, outside the
+critical path for the initial devices. Smartcard research is retired.
 
-## Principles
+Selected companion, raspberry and specs components were consolidated through
+[the reviewed A02 migration](https://github.com/nSealr/nsealr/tree/main/docs/restart/implementation/A02).
+Their original repositories retain source history and licenses; current
+development and issues belong in nsealr, not in those migration sources.
 
-Private keys stay out of ordinary clients. Device approval binds the exact operation. Documentation follows source, specifications and measurements. Hardware support is demonstrated on identified assemblies. The Board platform can host independent firmware, but does not promise every application or algorithm merely by exposing a secure element.
+Read [Contributing](https://github.com/nSealr/.github/blob/main/CONTRIBUTING.md),
+[Security](https://github.com/nSealr/.github/blob/main/SECURITY.md) and the
+[current product requirements](https://github.com/nSealr/nsealr/tree/main/docs/product).
